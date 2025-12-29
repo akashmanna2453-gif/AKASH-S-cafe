@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKASH'S CAFE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER BOX -->
+    <header class="header-box">
+        <h1>AKASH'S CAFE</h1>
+        <p class="quote">"Coffee is a hug in a mug" ☕</p>
+    </header>
+
+    <!-- 4 MAIN BOXES -->
+    <main class="main-container">
+        <div class="box-container">
+            <button class="nav-box" onclick="showSection('orders')">ORDERS</button>
+            <button class="nav-box" onclick="showSection('entertainment')">ENTERTAINMENT</button>
+            <button class="nav-box" onclick="showSection('contacts')">CONTACTS</button>
+            <button class="nav-box" onclick="showSection('about')">ABOUT</button>
+        </div>
+
+        <!-- ORDERS SECTION -->
+        <section id="orders" class="content-box hidden">
+            <h2>Menu</h2>
+            <div class="menu-grid">
+                <label><input type="checkbox" value="Espresso"> 1) Espresso</label>
+                <label><input type="checkbox" value="Drip Coffee"> 2) Drip Coffee</label>
+                <label><input type="checkbox" value="Teas"> 3) Teas</label>
+                <label><input type="checkbox" value="Smoothies"> 4) Smoothies</label>
+                <label><input type="checkbox" value="Pastries"> 5) Pastries</label>
+                <label><input type="checkbox" value="Sandwiches"> 6) Sandwiches</label>
+                <label><input type="checkbox" value="Snacks"> 7) Snacks</label>
+            </div>
+            <div class="order-buttons">
+                <button class="nav-box" onclick="hideAll()">← Back</button>
+                <button class="nav-box place-order-btn" onclick="placeOrder()">Place Order</button>
+            </div>
+        </section>
+
+        <!-- ORDER CONFIRMATION -->
+        <section id="order-confirm" class="content-box hidden">
+            <h2>✅ Thanks for your order!</h2>
+            <p>Your delicious cafe items are on the way! ☕</p>
+            <button class="nav-box" onclick="hideAll()">← Back to Menu</button>
+        </section>
+
+        <!-- ENTERTAINMENT SECTION -->
+        <section id="entertainment" class="content-box hidden">
+            <h2>OTT Platforms</h2>
+            <div class="ott-grid">
+                <button class="ott-box" onclick="showThanks()">Netflix</button>
+                <button class="ott-box" onclick="showThanks()">JioHotstar</button>
+                <button class="ott-box" onclick="showThanks()">Prime Video</button>
+            </div>
+            <button class="nav-box" onclick="hideAll()">← Back</button>
+        </section>
+
+        <!-- CONTACTS SECTION -->
+        <section id="contacts" class="content-box hidden">
+            <h2>Contact</h2>
+            <p><strong>Akash Manna</strong></p>
+            <p>Phone: 9876543210</p>
+            <p>Email: akash.cafe@gmail.com</p>
+            <div class="help-box">Help Desk</div>
+            <button class="nav-box" onclick="hideAll()">← Back</button>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="content-box hidden">
+            <h2>Thanks for ordering!</h2>
+            <p>Café Coffee Day, a part of Coffee Day Global Limited, is India's favourite hangout for coffee and conversations. Popularly known as CCD, we strive to provide the best experience to our guests. Our coffees are sourced from thousands of small coffee planters, who made us who we are today and we're glad to be a part of their lives. We opened our first cafe in 1996 at Brigade Road in Bangalore – the youth and the young at heart immediately took to the cafe, and it continues to be one of the most happening places in the city. CCD to the youth is a "hangout" spot where they meet people, make conversations, and have a whole lot of fun over steaming cups of great coffee. It's been an exciting journey since then to becoming the largest organised retail cafe chain in the country.</p>
+            <button class="nav-box" onclick="hideAll()">← Back</button>
+        </section>
+
+        <!-- OTT Thanks -->
+        <section id="thanks" class="content-box hidden">
+            <h2>Thanks for watching! 🎥</h2>
+            <button class="nav-box" onclick="hideAll()">← Back</button>
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            hideAll();
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function showThanks() {
+            showSection('thanks');
+        }
+
+        function placeOrder() {
+            const checkedItems = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value);
+            
+            if (checkedItems.length === 0) {
+                alert('Please select at least one item! ☕');
+                return;
+            }
+            showSection('order-confirm');
+        }
+
+        function hideAll() {
+            document.querySelectorAll('.content-box').forEach(box => {
+                box.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
